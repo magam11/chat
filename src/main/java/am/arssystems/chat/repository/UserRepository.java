@@ -12,4 +12,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User getByEmail(@Param("email") String email);
     @Query(value = "select u from User u where u.id=:id")
     User findById(@Param("id")int id);
+
+    @Query(value = "select u from User u where u.email=lower(:email)")
+    User getUserByEmail(@Param("email")String email);
+
 }
