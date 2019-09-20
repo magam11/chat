@@ -22,8 +22,12 @@ public class Message {
     @Column(columnDefinition = "text")
     private String text;
 
-    @Column(name = "send_date")
-    private Timestamp sendDate;
+    @Column(name = "created_at")
+    private Timestamp createdAt;
+
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "from_user_id")
@@ -39,7 +43,12 @@ public class Message {
 
     @PrePersist
     public void prePersist() {
-        sendDate = Timestamp.valueOf(LocalDateTime.now());
+        createdAt = Timestamp.valueOf(LocalDateTime.now());
+    }
+
+    @PreUpdate
+    public void preUpdate(){
+        updatedAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
 
