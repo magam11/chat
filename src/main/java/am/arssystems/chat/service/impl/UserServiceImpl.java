@@ -1,6 +1,8 @@
 package am.arssystems.chat.service.impl;
 
 import am.arssystems.chat.dto.responseWrapper.UserData;
+import am.arssystems.chat.model.Group;
+import am.arssystems.chat.model.GroupUser;
 import am.arssystems.chat.model.GroupUsersId;
 import am.arssystems.chat.model.User;
 import am.arssystems.chat.repository.GroupUserRepository;
@@ -12,9 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserServce {
@@ -55,6 +55,16 @@ public class UserServiceImpl implements UserServce {
                         .build()));
             }
         }
+        return result;
+    }
+
+    @Override
+    public List<Group> getUserGroups(User user) {
+        List<Group> result = groupUserRepository.getGroupsByUser(user.getId());
+//        Set<GroupUser> groupUserss = user.getGroups();
+//        for (GroupUser groupUser : groupUserss) {
+//            result.add(groupUser.getGroup());
+//        }
         return result;
     }
 }

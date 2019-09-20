@@ -1,5 +1,7 @@
 package am.arssystems.chat.model;
 
+import am.arssystems.chat.model.view.Views;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,15 +21,19 @@ public class Group {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(Views.Id.class)
     private int id;
 
     @Column
+    @JsonView(Views.Base.class)
     private String name;
 
     @Column
+    @JsonView(Views.Base.class)
     private String imagePath;
 
     @Column(name = "created_at")
+    @JsonView(Views.Base.class)
     private Timestamp createdAt;
 
     @Column(name = "updated_at")
@@ -35,6 +41,7 @@ public class Group {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
+    @JsonView(Views.Base.class)
     private User owner;
 
     @PreUpdate

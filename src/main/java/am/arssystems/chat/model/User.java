@@ -1,6 +1,8 @@
 package am.arssystems.chat.model;
 
+import am.arssystems.chat.model.view.Views;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,18 +26,23 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
+    @JsonView(Views.Id.class)
     private int id;
 
     @Column
+    @JsonView(Views.Base.class)
     private String email;
 
     @Column
+    @JsonView(Views.Password.class)
     private String password;
 
     @Column
+    @JsonView(Views.Base.class)
     private String firstName;
 
     @Column
+    @JsonView(Views.Base.class)
     private String lastName;
 
     @Column

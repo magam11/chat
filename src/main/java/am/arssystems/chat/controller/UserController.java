@@ -56,4 +56,11 @@ public class UserController {
         List<UserData> result = userServce.searchUser(currentUser.getUser(),text,groupId);
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping("/myGroup")
+    @PreAuthorize("hasAuthority('user')")
+    @JsonView(Views.Base.class)
+    public ResponseEntity getUserGroup(@AuthenticationPrincipal CurrentUser currentUser){
+        return ResponseEntity.ok(userServce.getUserGroups(currentUser.getUser()));
+    }
 }
