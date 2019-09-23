@@ -47,7 +47,7 @@ public class UserController {
         return ResponseEntity.status(httpStatus).body(responseBody);
     }
 
-    @GetMapping("/search")
+    @GetMapping("/searchByFirstNameOrEmal")
     @JsonView(Views.Special.class)
     @PreAuthorize("hasAuthority('user')")
     public ResponseEntity searchUserByEmalOrFirtName(@AuthenticationPrincipal CurrentUser currentUser,

@@ -16,7 +16,7 @@ CREATE TABLE `groups`
 (
     `id`         int(11) unsigned                    NOT NULL AUTO_INCREMENT,
     `name`       varchar(255)                        NOT NULL,
-    `image_path` varchar(255)                        NOT NULL,
+    `image_path` varchar(255),
     `created_at` timestamp default current_timestamp not null,
     `updated_at` timestamp default CURRENT_TIMESTAMP not null on update current_timestamp,
     `owner_id`   int(11) unsigned                    not null,

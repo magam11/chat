@@ -37,11 +37,12 @@ public class Group {
     private Timestamp createdAt;
 
     @Column(name = "updated_at")
+    @JsonView(Views.Special.class)
     private Timestamp updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
-    @JsonView(Views.Base.class)
+    @JsonView(Views.Special.class)
     private User owner;
 
     @PreUpdate
